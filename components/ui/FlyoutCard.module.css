@@ -1,0 +1,39 @@
+.card__container {
+  display: flex;
+  justify-content: space-around;
+  padding: 1rem;
+  margin: 1rem;
+  width: 450px;
+  height: 350px;
+  background-color: #d0fb49;
+  box-shadow: 1px 2px 5px rgba(3, 4, 0, 0.1);
+}
+
+.card__container_right img {
+  width: 300px;
+  height: 300px;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.card__container_right {
+  cursor: pointer;
+}
+
+.card__container_left {
+  font-size: 24px;
+}
+
+.card__container_right p {
+  margin-bottom: 0.5rem;
+}
+
+.nav__link_item_button {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.nav__link_item_button:hover {
+  color: #fff;
+}
