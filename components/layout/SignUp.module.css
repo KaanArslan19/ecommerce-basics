@@ -10,8 +10,6 @@
 }
 
 .control {
-  display: flex;
-  justify-content: space-between;
   margin-bottom: 0.8rem;
 }
 
@@ -21,6 +19,13 @@
   margin-bottom: 0.2rem;
 }
 
+.control input {
+  width: 100%;
+}
+.control input,
+.control label {
+  display: block;
+}
 .control input,
 .control textarea {
   font: inherit;
@@ -48,4 +53,14 @@
 .actions button:hover,
 .actions button:active {
   background-color: #defb7e;
+}
+
+.invalid input {
+  border: 1px solid #b40e0e;
+  background-color: #fddddd;
+}
+
+.invalid input:focus {
+  border-color: #ff8800;
+  background-color: #fbe8d2;
 }

@@ -16,6 +16,7 @@ const NewProductForm = (props) => {
       imageRef: imageRef.current.value,
     };
   };
+
   return (
     <form className={classes.form} onSubmit={formSubmitHandler}>
       <div className={classes.control}>
