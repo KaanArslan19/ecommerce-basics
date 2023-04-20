@@ -1,0 +1,126 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  flex-flow: column;
+}
+
+.form {
+  width: 95%;
+  max-width: 25rem;
+  box-sizing: border-box;
+  position: relative;
+  margin: 2rem auto;
+}
+
+.form h1 {
+  margin-bottom: 2rem;
+}
+
+.control {
+  position: relative;
+  margin-bottom: 2.2rem;
+}
+
+.control input {
+  padding: 0.25rem;
+  overflow: hidden;
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.268);
+  background-color: transparent;
+}
+.control::placeholder {
+  color: transparent;
+}
+
+.control label {
+  position: absolute;
+  top: 0px;
+  left: -2px;
+
+  transition: 0.2s all ease;
+  -moz-transition: 0.2s ease all;
+  -webkit-transition: 0.2s ease all;
+  pointer-events: none;
+}
+.control input:focus {
+  outline: none;
+}
+.control input:focus + label,
+.control input:valid + label {
+  transform: translate(0, -22px);
+  color: rgba(0, 0, 0, 0.268);
+
+  font-size: 12px;
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.actions p {
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.actions p:hover {
+  color: #572d60;
+}
+
+.actions button {
+  font: inherit;
+  cursor: pointer;
+  background-color: #d0fb49;
+  color: white;
+  padding: 0.5rem 1.5rem;
+  border: 1px solid #defb7e;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+.actions button:hover,
+.actions button:active {
+  background-color: #defb7e;
+}
+
+.actions .toggle {
+  margin-top: 1rem;
+  background-color: transparent;
+  color: #000;
+  border: none;
+  padding: 0.15rem 1.5rem;
+}
+
+.invalid p {
+  color: red;
+}
+
+.link {
+  text-decoration: none;
+  color: black;
+}
+
+.warning {
+  background-color: #eed202;
+  margin-bottom: 2rem;
+  display: flex;
+  font-weight: 700;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 5px;
+}
+
+.icon {
+  font-size: 32px;
+}
+
+.header {
+  display: flex;
+}

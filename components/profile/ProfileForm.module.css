@@ -1,0 +1,73 @@
+.box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  flex-flow: column;
+}
+
+.form {
+  width: 95%;
+  max-width: 25rem;
+  box-sizing: border-box;
+  position: relative;
+  margin: 2rem auto;
+}
+
+.control {
+  position: relative;
+  margin-bottom: 2.2rem;
+}
+
+.control input {
+  padding: 0.25rem;
+  overflow: hidden;
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.268);
+  background-color: transparent;
+}
+.control::placeholder {
+  color: transparent;
+}
+
+.control label {
+  position: absolute;
+  top: 0px;
+  left: -2px;
+
+  transition: 0.2s all ease;
+  -moz-transition: 0.2s ease all;
+  -webkit-transition: 0.2s ease all;
+  pointer-events: none;
+}
+.control input:focus {
+  outline: none;
+}
+.control input:focus + label,
+.control input:valid + label {
+  transform: translate(0, -22px);
+  color: rgba(0, 0, 0, 0.268);
+
+  font-size: 12px;
+}
+.action {
+  margin-top: 1.5rem;
+  text-align: center;
+}
+
+.action button {
+  font: inherit;
+  cursor: pointer;
+  padding: 0.5rem 1.5rem;
+  border-radius: 4px;
+  background-color: #d0fb49;
+  color: #000;
+  font-weight: bold;
+  border: 1px solid #defb7e;
+}
+
+.action button:hover {
+  background-color: #defb7e;
+  border-color: #defb7e;
+}

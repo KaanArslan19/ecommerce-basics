@@ -15,3 +15,44 @@
   color: black;
   text-decoration: none;
 }
+
+.icons {
+  display: flex;
+}
+
+.input input {
+  position: relative;
+  display: flex;
+  width: 50px;
+  height: 30px;
+  border-radius: 50px;
+  outline: none;
+  transition: all 0.5s cubic-bezier(0.6, -0.55, 0.265, 1.55);
+  opacity: 1;
+}
+
+.active input {
+  position: relative;
+  display: flex;
+  width: 200px;
+  height: 30px;
+  border-radius: 50px;
+  outline: none;
+  opacity: 1;
+}
+.search {
+  position: absolute;
+  top: 17px;
+  right: 180px;
+}
+.button {
+  background-color: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: flex-start;
+  color: black;
+  font-size: 26px;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  border: none;
+}
