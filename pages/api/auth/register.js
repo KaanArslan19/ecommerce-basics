@@ -7,7 +7,6 @@ async function handler(req, res) {
   }
   const data = req.body;
   const { email, password } = data;
-  const session = await getServerSession(req, res);
 
   if (
     !email ||

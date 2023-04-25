@@ -1,23 +1,29 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import classes from "./NewProductForm.module.css";
 
 const NewProductForm = (props) => {
+  const [image, setImage] = useState("");
   const titleRef = useRef();
   const priceRef = useRef();
   const descRef = useRef();
-  const imageRef = useRef();
 
+  const convertToBase64 = (event) => {
+    var reader = new FileReader();
+    reader.readAsDataURL(event.target.files[0]);
+    reader.onload = () => {
+      console.log(reader.result);
+      setImage(reader.result);
+    };
+  };
   const formSubmitHandler = (event) => {
     event.preventDefault();
     const formData = {
       title: titleRef.current.value,
       price: priceRef.current.value,
       description: descRef.current.value,
-      /*       imageRef: imageRef.current.value,
-       */
+      image: image,
     };
     props.onAddProduct(formData);
-    console.log(formData);
   };
 
   return (
@@ -52,8 +58,13 @@ const NewProductForm = (props) => {
             required
             id="title"
             accept=".jpg, .png, .jpeg"
-            ref={imageRef}
+            onChange={convertToBase64}
           />
+          {image === "" || image === null ? (
+            ""
+          ) : (
+            <img width={100} height={100} src={image} />
+          )}
         </div>
         <div className={classes.actions}>
           <button>Add Product</button>

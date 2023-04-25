@@ -3,10 +3,11 @@ import { ObjectId } from "mongodb";
 
 import ProductDetails from "../../components/products/ProductDetails";
 import { connectToDatabase } from "../../lib/db";
+import ProductItem from "../../components/products/ProductItem";
 const ProductPage = (props) => {
   return (
     <Fragment>
-      <ProductDetails
+      <ProductItem
         title={props.productData.title}
         price={props.productData.price}
         image={props.productData.image}

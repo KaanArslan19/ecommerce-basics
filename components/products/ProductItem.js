@@ -7,15 +7,16 @@ const ProductItem = (props) => {
     router.push("/" + props.id);
   };
   return (
-    <li className={classes.item} onClick={showDetailsHandler}>
+    <li className={classes.container} onClick={showDetailsHandler}>
       <Card>
         <div className={classes.image}>
           <img src={props.image} alt="product" />
         </div>
+
         <div className={classes.content}>
-          <h3>{props.title}</h3>
-          <p>{props.description}</p>
+          <h4>{props.title}</h4>
           <p>${props.price}</p>
+          <p>{props.description}</p>
         </div>
       </Card>
     </li>

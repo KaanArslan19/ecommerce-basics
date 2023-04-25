@@ -3,7 +3,7 @@ import ProfileForm from "./ProfileForm";
 
 const Profile = () => {
   const changePasswordHandler = async (passwordData) => {
-    const response = await fetch("api/user/change-password", {
+    const response = await fetch("/api/auth/change-password", {
       method: "PATCH",
       body: JSON.stringify(passwordData),
       headers: { "Content-Type": "application/json" },

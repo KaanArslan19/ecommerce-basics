@@ -10,7 +10,6 @@ import { signOut, useSession } from "next-auth/react";
 
 const Header = () => {
   const { data: session, status } = useSession();
-  console.log(session);
   console.log(status);
   const [searchInputClicked, setSearchInputClicked] = useState(false);
   const inputClickHandler = () => {

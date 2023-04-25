@@ -27,7 +27,6 @@ async function createUser(email, password) {
 }
 
 const AuthForm = () => {
-  console.log(existingUser);
   const [isLogin, setIsLogin] = useState(true);
   const router = useRouter();
 

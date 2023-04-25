@@ -1,12 +1,11 @@
 .container {
-  display: flex;
-  justify-content: center;
-  width: 400px;
+  width: 100%;
+  flex-flow: column;
 }
 
 .form {
   width: 95%;
-  max-width: 25rem;
+  max-width: 40rem;
   box-sizing: border-box;
   margin: 2rem auto;
 }
@@ -21,17 +20,27 @@
   margin-bottom: 0.2rem;
 }
 
-.control input,
+.control input {
+  width: 100%;
+  outline: none;
+  display: block;
+  font: inherit;
+  border: none;
+  margin-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.268);
+  padding: 0.25rem;
+}
+
 .control textarea {
+  width: 100%;
   outline: none;
   display: block;
   font: inherit;
   border: none;
 
-  border-bottom: 1px solid rgba(0, 0, 0, 0.268);
+  border: 1px solid rgba(0, 0, 0, 0.268);
   padding: 0.25rem;
 }
-
 .actions {
   display: flex;
   flex-direction: column;

@@ -1,6 +1,17 @@
 .card {
-  max-width: 450px;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  padding: 1.5rem;
+  width: 350px;
+  height: 500px;
   background-color: white;
-  border-radius: 6px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  scale: 1;
+}
+.card img {
+  transition: 0.4s all ease;
+}
+.card:hover img {
+  scale: 1.1;
 }
