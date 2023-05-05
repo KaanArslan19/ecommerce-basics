@@ -16,7 +16,6 @@ const ProductItem = (props) => {
         <div className={classes.content}>
           <h4>{props.title}</h4>
           <p>${props.price}</p>
-          <p>{props.description}</p>
         </div>
       </Card>
     </li>

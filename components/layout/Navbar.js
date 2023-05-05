@@ -49,19 +49,19 @@ const Navbar = () => {
   const firstItemFlyOutCard = {
     id: "f1",
     list: ["All", "Classy", "Sport", "Cozy"],
-    category: "Bags",
+    type: "bags",
     image: images.totebag,
   };
   const secondItemFlyOutCard = {
     id: "f2",
     list: ["All", "One Color", "Patch work", "Vignette"],
-    category: "Body Suit",
+    type: "body-suit",
     image: images.bodysuit,
   };
   const thirdItemFlyOutCard = {
     id: "f3",
     list: ["All", "Shirts", "Tees", "Vignette"],
-    category: "Polar",
+    type: "polars",
     image: images.whitepolar,
   };
 

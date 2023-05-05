@@ -1,7 +1,6 @@
 import { Fragment } from "react";
 import { ObjectId } from "mongodb";
 
-import ProductDetails from "../../components/products/ProductDetails";
 import { connectToDatabase } from "../../lib/db";
 import ProductItem from "../../components/products/ProductItem";
 const ProductPage = (props) => {
@@ -11,7 +10,7 @@ const ProductPage = (props) => {
         title={props.productData.title}
         price={props.productData.price}
         image={props.productData.image}
-        description={props.productData.description}
+        type={props.productData.type}
       />
     </Fragment>
   );
@@ -50,7 +49,7 @@ export async function getStaticProps(context) {
         title: selectedProduct.title,
         price: selectedProduct.price,
         image: selectedProduct.image,
-        description: selectedProduct.description,
+        type: selectedProduct.type,
       },
     },
   };

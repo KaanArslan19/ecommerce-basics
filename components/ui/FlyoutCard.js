@@ -18,12 +18,11 @@ const FlyoutCard = ({ items }) => {
       </div>
       <div className={classes.card__container_right}>
         <Link
-          href="/collections/products"
+          href={`/collections/products/${items.type}`}
           className={classes.nav__link_item_button}
         >
           <Image src={items.image} alt="tote-bag" />
-          <p>{items.category}</p>
-          <p>Shop</p>
+          <p>Shop {items.type}</p>
         </Link>
       </div>
     </div>

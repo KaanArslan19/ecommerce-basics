@@ -7,10 +7,13 @@ import { VscAccount } from "react-icons/vsc";
 import { AiOutlineLogout } from "react-icons/ai";
 import classes from "./Header.module.css";
 import { signOut, useSession } from "next-auth/react";
+import Cart from "./Cart";
 
 const Header = () => {
   const { data: session, status } = useSession();
   console.log(status);
+  const [showCart, setShowCart] = useState(false);
+
   const [searchInputClicked, setSearchInputClicked] = useState(false);
   const inputClickHandler = () => {
     setSearchInputClicked(true);
@@ -21,6 +24,13 @@ const Header = () => {
   };
   const signOutHandler = () => {
     signOut();
+  };
+  const showCartHandler = () => {
+    setShowCart(true);
+
+    if (showCart) {
+      setShowCart(false);
+    }
   };
 
   const inputClasses = searchInputClicked
@@ -53,14 +63,15 @@ const Header = () => {
         <Link href={session ? "/profile" : "/auth"} className={classes.icon}>
           <VscAccount />
         </Link>
-        <Link href="/" className={classes.icon}>
+        <button onClick={showCartHandler} className={classes.button}>
           <BsBag />
-        </Link>
+        </button>
         {session && (
           <button onClick={signOutHandler} className={classes.button}>
             <AiOutlineLogout />
           </button>
         )}
+        {showCart && <Cart show={showCartHandler} />}
       </div>
     </div>
   );

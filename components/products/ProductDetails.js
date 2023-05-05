@@ -10,7 +10,6 @@ const ProductDetails = (props) => {
         </div>
         <div className={classes.content}>
           <h3>{props.title}</h3>
-          <p>{props.description}</p>
           <p>${props.price}</p>
         </div>
       </Card>

@@ -3,12 +3,21 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import { verifyPassword } from "../../../lib/auth";
 import { connectToDatabase } from "../../../lib/db";
 
-export default NextAuth({
+export const authOptions = {
   session: {
     strategy: "jwt",
   },
   providers: [
     CredentialsProvider({
+      type: "credentials",
+      credentials: {
+        email: {
+          label: "Email",
+          type: "text",
+          placeholder: "jsmith@gmail.com",
+        },
+        password: { label: "Password", type: "password" },
+      },
       async authorize(credentials) {
         const client = await connectToDatabase();
 
@@ -38,4 +47,6 @@ export default NextAuth({
       },
     }),
   ],
-});
+};
+
+export default NextAuth(authOptions);

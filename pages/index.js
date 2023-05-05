@@ -30,7 +30,7 @@ export async function getStaticProps() {
         title: product.title,
         image: product.image,
         price: product.price,
-        description: product.description,
+        type: product.type,
       })),
     },
     revalidate: 1,

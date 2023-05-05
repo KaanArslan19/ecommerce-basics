@@ -1,32 +1,49 @@
-import { getSession } from "next-auth/react";
+import { getServerSession } from "next-auth/next";
 
 import { hashPassword, verifyPassword } from "../../../lib/auth";
 import { connectToDatabase } from "../../../lib/db";
+import { authOptions } from "./[...nextauth]";
 async function handler(req, res) {
   if (req.method !== "PATCH") {
     return;
   }
 
-  const session = await getSession({ req: req });
+  const session = await getServerSession({ req: req, res: res, authOptions });
+  console.log("Session: ", session);
 
   if (!session) {
     res.status(401).json({ message: "Not Authenticated!" });
     return;
   }
+  let client;
 
   const userEmail = session.user.email;
   const oldPassword = req.body.oldPassword;
   const newPassword = req.body.newPassword;
-  const client = await connectToDatabase();
+
+  try {
+    client = await connectToDatabase();
+  } catch (error) {
+    res.status(500).json({ message: "Connecting to the database failed!" });
+    return;
+  }
   const usersCollection = client.db().collection("users");
 
-  const user = usersCollection.findOne({ email: userEmail });
+  let user;
+  try {
+    user = await usersCollection.findOne(
+      { email: userEmail },
+      { email: 1, password: 1 }
+    );
+    console.log("User Info:", user);
+  } catch (error) {
+    console.log(error);
 
-  if (!user) {
     res.status(404).json({ message: "User not Found!" });
     client.close();
     return;
   }
+
   const currentPassword = user.password;
 
   const passwordsAreEqual = await verifyPassword(oldPassword, currentPassword);
@@ -36,8 +53,8 @@ async function handler(req, res) {
     client.close();
     return;
   }
-  const hashedPassword = hashPassword(newPassword);
-  const result = await usersCollection.updateOne(
+  const hashedPassword = await hashPassword(newPassword);
+  await usersCollection.updateOne(
     { email: userEmail },
     { $set: { password: hashedPassword } }
   );

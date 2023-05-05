@@ -3,14 +3,21 @@ import ProfileForm from "./ProfileForm";
 
 const Profile = () => {
   const changePasswordHandler = async (passwordData) => {
-    const response = await fetch("/api/auth/change-password", {
-      method: "PATCH",
-      body: JSON.stringify(passwordData),
-      headers: { "Content-Type": "application/json" },
-    });
-    const data = await response.json();
+    try {
+      let body = JSON.stringify(passwordData);
+      console.log("bodybody : ", body);
+      const response = await fetch("/api/auth/change-password", {
+        method: "PATCH",
+        body: body,
+        headers: { "Content-Type": "application/json" },
+      });
 
-    console.log(data);
+      const data = await response.json();
+
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
   };
   return (
     <section className={classes.profile}>

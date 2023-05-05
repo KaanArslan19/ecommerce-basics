@@ -18,6 +18,7 @@
 
 .card__container_right {
   cursor: pointer;
+  text-transform: uppercase;
 }
 
 .card__container_left {

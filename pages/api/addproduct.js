@@ -1,19 +1,27 @@
-import { connectToDatabase } from "../../lib/db";
+import { connectToDatabase, insertDocument } from "../../lib/db";
 
 async function handler(req, res) {
   if (req.method === "POST") {
     const data = req.body;
 
-    const client = await connectToDatabase();
+    let client;
+    let result;
 
-    const db = client.db();
-    const productsData = db.collection("products");
-
-    const result = await productsData.insertOne(data);
-
+    try {
+      client = await connectToDatabase();
+    } catch (error) {
+      res.status(500).json({ message: "Connecting to the database failed!" });
+      return;
+    }
+    try {
+      result = await insertDocument(client, "products", data);
+      res.status(201).json({ message: "Product added!" });
+    } catch (error) {
+      res.status(500).json({ message: "Inserting product failed!" });
+    }
     console.log(result);
+
     client.close();
-    res.status(201).json({ message: "Product added!" });
   }
 }
 

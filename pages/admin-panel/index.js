@@ -3,8 +3,8 @@ import { useRouter } from "next/router";
 import { Fragment, useState } from "react";
 import NewProductForm from "../../components/products/NewProductForm";
 const AdminPanelPage = () => {
+  const Dummy_ProductTypes = ["Bags", "Polar", "Jacket", "Body Suit"];
   const router = useRouter();
-  const [productExists, setProductExists] = useState(false);
   const addProductHandler = async (enteredProductInfo) => {
     const response = await fetch("/api/addproduct", {
       method: "POST",
@@ -18,7 +18,10 @@ const AdminPanelPage = () => {
   };
   return (
     <Fragment>
-      <NewProductForm onAddProduct={addProductHandler} />
+      <NewProductForm
+        onAddProduct={addProductHandler}
+        productTypes={Dummy_ProductTypes}
+      />
     </Fragment>
   );
 };

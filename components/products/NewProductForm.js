@@ -5,7 +5,7 @@ const NewProductForm = (props) => {
   const [image, setImage] = useState("");
   const titleRef = useRef();
   const priceRef = useRef();
-  const descRef = useRef();
+  const typeRef = useRef();
 
   const convertToBase64 = (event) => {
     var reader = new FileReader();
@@ -20,7 +20,7 @@ const NewProductForm = (props) => {
     const formData = {
       title: titleRef.current.value,
       price: priceRef.current.value,
-      description: descRef.current.value,
+      type: typeRef.current.value,
       image: image,
     };
     props.onAddProduct(formData);
@@ -41,14 +41,12 @@ const NewProductForm = (props) => {
         </div>
 
         <div className={classes.control}>
-          <label htmlFor="description">Description</label>
-          <textarea
-            type="text"
-            required
-            id="description"
-            rows="5"
-            ref={descRef}
-          ></textarea>
+          <label htmlFor="type">Product Type</label>
+          <select required id="type" ref={typeRef}>
+            {props.productTypes.map((type) => (
+              <option value={type}>{type}</option>
+            ))}
+          </select>
         </div>
         <div className={classes.control}>
           <label htmlFor="price">Image</label>
