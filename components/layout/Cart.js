@@ -4,6 +4,8 @@ import Link from "next/link";
 
 import { BsChevronLeft } from "react-icons/bs";
 import CartItem from "./CartItem";
+import PrimaryButton from "../ui/PrimaryButton";
+import { HiOutlineShoppingBag } from "react-icons/hi";
 
 const Cart = (props) => {
   const showCartHandler = () => {
@@ -14,11 +16,7 @@ const Cart = (props) => {
     <div className={classes.wrapper}>
       <div className={classes.container}>
         <div className={classes.cartTop}>
-          <button
-            type="button"
-            className={classes.cartHeading}
-            onClick={showCartHandler}
-          >
+          <button className={classes.topButton} onClick={showCartHandler}>
             <BsChevronLeft />
             <span className={classes.heading}>Your Cart</span>
             <span className={classes.numberOfItems}>({10} items)</span>
@@ -26,15 +24,13 @@ const Cart = (props) => {
         </div>
         <div className={classes.cartMiddle}>
           <div className={classes.emptyCart}>
+            <HiOutlineShoppingBag className={classes.shoppingBagIcon} />
             <h3> Your Shopping bag is empty </h3>
+
             <Link href="/">
-              <button
-                type="button"
-                onClick={showCartHandler}
-                className={classes.button}
-              >
+              <PrimaryButton onClick={showCartHandler}>
                 Continue Shopping
-              </button>
+              </PrimaryButton>
             </Link>
           </div>
           <div className={classes.productContainer}>
@@ -47,10 +43,8 @@ const Cart = (props) => {
             <h3>Subtotal: </h3>
             <h3>$ Total Price will be Here</h3>
           </div>
-          <div className={classes.btnContainer}>
-            <button type="button" className={classes.button}>
-              Pay with Stripe
-            </button>
+          <div className={classes.buttonContainer}>
+            <PrimaryButton type="button">Pay with Stripe</PrimaryButton>
           </div>
         </div>
       </div>
