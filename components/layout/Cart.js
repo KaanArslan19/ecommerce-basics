@@ -3,37 +3,43 @@ import classes from "./Cart.module.css";
 import Link from "next/link";
 
 import { BsChevronLeft } from "react-icons/bs";
+import CartItem from "./CartItem";
 
 const Cart = (props) => {
   const showCartHandler = () => {
     props.show();
   };
+
   return (
     <div className={classes.wrapper}>
       <div className={classes.container}>
-        <button
-          type="button"
-          className={classes.cartHeading}
-          onClick={showCartHandler}
-        >
-          <BsChevronLeft />
-          <span className={classes.heading}>Your Cart</span>
-          <span className={classes.numberOfItems}>({10} items)</span>
-        </button>
-        <div className={classes.emptyCart}>
-          <h3> Your Shopping bag is empty </h3>
-          <Link href="/">
-            <button
-              type="button"
-              onClick={showCartHandler}
-              className={classes.button}
-            >
-              Continue Shopping
-            </button>
-          </Link>
+        <div className={classes.cartTop}>
+          <button
+            type="button"
+            className={classes.cartHeading}
+            onClick={showCartHandler}
+          >
+            <BsChevronLeft />
+            <span className={classes.heading}>Your Cart</span>
+            <span className={classes.numberOfItems}>({10} items)</span>
+          </button>
         </div>
-        <div className={classes.productContainer}>
-          <div className={classes.product}></div>
+        <div className={classes.cartMiddle}>
+          <div className={classes.emptyCart}>
+            <h3> Your Shopping bag is empty </h3>
+            <Link href="/">
+              <button
+                type="button"
+                onClick={showCartHandler}
+                className={classes.button}
+              >
+                Continue Shopping
+              </button>
+            </Link>
+          </div>
+          <div className={classes.productContainer}>
+            <CartItem />
+          </div>
         </div>
 
         <div className={classes.cartBottom}>
