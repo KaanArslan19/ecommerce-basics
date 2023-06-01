@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { BsBag } from "react-icons/bs";
 import Link from "next/link";
 
@@ -8,13 +8,19 @@ import { AiOutlineLogout } from "react-icons/ai";
 import classes from "./Header.module.css";
 import { signOut, useSession } from "next-auth/react";
 import Cart from "./Cart";
+import { useRouter } from "next/router";
 
 const Header = () => {
+  const router = useRouter();
   const { data: session, status } = useSession();
-  console.log(status);
   const [showCart, setShowCart] = useState(false);
+  const searchInputRef = useRef();
+  const [enteredValue, setEnteredValue] = useState("");
 
   const [searchInputClicked, setSearchInputClicked] = useState(false);
+  const inputChangeHandler = (event) => {
+    setEnteredValue(event.target.value);
+  };
   const inputClickHandler = () => {
     setSearchInputClicked(true);
 
@@ -22,6 +28,14 @@ const Header = () => {
       setSearchInputClicked(false);
     }
   };
+  const searchButtonHandler = () => {
+    if (enteredValue.trim() === "") {
+      return;
+    }
+    router.push("/search/" + enteredValue);
+    setEnteredValue("");
+  };
+
   const signOutHandler = () => {
     signOut();
   };
@@ -32,10 +46,6 @@ const Header = () => {
       setShowCart(false);
     }
   };
-
-  const inputClasses = searchInputClicked
-    ? classes["active"]
-    : classes["input"];
 
   return (
     <div className={classes.header}>
@@ -53,14 +63,32 @@ const Header = () => {
         </div>
       )}
       <div className={classes.icons}>
-        <div className={inputClasses} onClick={inputClickHandler}>
-          <input type="text" />
-          <span className={classes.icon + " " + classes.search}>
-            <MdOutlineSearch />
-          </span>
-        </div>
+        <span className={classes.inputContainer}>
+          <input
+            type="text"
+            maxLength={25}
+            ref={searchInputRef}
+            value={enteredValue}
+            placeholder="search"
+            name="search"
+            id="search"
+            onChange={inputChangeHandler}
+            onClick={inputClickHandler}
+            className={classes.input}
+          />
 
-        <Link href={session ? "/profile" : "/auth"} className={classes.icon}>
+          <button
+            onClick={searchButtonHandler}
+            href={searchButtonHandler}
+            className={
+              classes.icon + " " + classes.search + " " + classes.button
+            }
+          >
+            <MdOutlineSearch />
+          </button>
+        </span>
+
+        <Link href={session ? "/profile" : "/auth"} className={classes.button}>
           <VscAccount />
         </Link>
         <button onClick={showCartHandler} className={classes.button}>

@@ -1,8 +1,8 @@
 import { Fragment } from "react";
 import { ObjectId } from "mongodb";
 
-import { connectToDatabase } from "../../lib/db";
-import ProductItem from "../../components/products/ProductItem";
+import { connectToDatabase } from "../../../lib/db";
+import ProductItem from "../../../components/products/ProductItem";
 const ProductPage = (props) => {
   return (
     <Fragment>

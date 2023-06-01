@@ -1,48 +1,42 @@
-import { connectToDatabase } from "../../../../lib/db";
+import { Fragment } from "react";
+import ProductList from "../../components/products/ProductList";
+import { connectToDatabase } from "../../lib/db";
 
-import React from "react";
-import ProductList from "../../../../components/products/ProductList";
-
-const ProductsPageByType = ({ products }) => {
+const SearchPage = ({ products }) => {
   return (
-    <div>
+    <Fragment>
       <ProductList products={products} />
-    </div>
+    </Fragment>
   );
 };
-
-export default ProductsPageByType;
 
 export async function getStaticPaths() {
   const client = await connectToDatabase();
   const db = client.db();
   const productsList = db.collection("products");
-  const productTypes = await productsList
-    .find({}, { type: 1, _id: 0 })
-    .toArray();
-
+  const products = await productsList.find({}, { title: 1, type: 1 }).toArray();
   client.close();
-  if (!productTypes) {
-    return { notFound: true };
-  }
 
   return {
     fallback: "blocking",
-    paths: productTypes.map((item) => ({
-      params: { productType: item.type },
+    paths: products.map((product) => ({
+      params: { slug: product.type && product.title },
     })),
   };
 }
+
 export async function getStaticProps(context) {
-  const productType = context.params.productType;
+  const enteredInputValue = context.params.slug;
   const client = await connectToDatabase();
   const db = client.db();
   const productList = db.collection("products");
   const products = await productList.find().toArray();
   const filteredProducts = products.filter((product) => {
-    return product.type === productType;
+    return (
+      product.title.includes(enteredInputValue) &&
+      product.type.includes(enteredInputValue)
+    );
   });
-
   client.close();
 
   return {
@@ -55,6 +49,6 @@ export async function getStaticProps(context) {
         type: product.type,
       })),
     },
-    revalidate: 1,
   };
 }
+export default SearchPage;

@@ -3,14 +3,14 @@ import { Fragment } from "react";
 import ProductList from "../components/products/ProductList";
 import { connectToDatabase } from "../lib/db";
 
-const HomePage = (props) => {
+const HomePage = ({ products }) => {
   return (
     <Fragment>
       <Head>
-        <title>Hirem </title>
-        <meta name="description" content="Some Content" />
+        <title>Hirem</title>
+        <meta name="HomePage" content="Main Content" />
       </Head>
-      <ProductList products={props.products} />
+      <ProductList products={products} />
     </Fragment>
   );
 };

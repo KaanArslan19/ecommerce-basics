@@ -6,7 +6,7 @@ import Header from "./Header";
 const Layout = (props) => {
   return (
     <Fragment>
-      <Header />
+      <Header products={props.products} />
       <Navbar />
       <main>{props.children} </main>
     </Fragment>
