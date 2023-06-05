@@ -51,7 +51,7 @@ const Header = () => {
     <div className={classes.header}>
       <div>
         <Link href="/" className={classes.nav__link_item_button}>
-          <h1>HIREM</h1>
+          <h1>HIER</h1>
         </Link>
       </div>
 

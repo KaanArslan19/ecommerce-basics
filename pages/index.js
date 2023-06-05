@@ -7,7 +7,7 @@ const HomePage = ({ products }) => {
   return (
     <Fragment>
       <Head>
-        <title>Hirem</title>
+        <title>HIER</title>
         <meta name="HomePage" content="Main Content" />
       </Head>
       <ProductList products={products} />

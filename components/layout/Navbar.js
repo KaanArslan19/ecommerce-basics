@@ -129,7 +129,7 @@ const Navbar = () => {
             </div>
           </div>
           <li>
-            <Link href="about" className={classes.nav__link_item_button}>
+            <Link href="/about" className={classes.nav__link_item_button}>
               About
             </Link>
           </li>

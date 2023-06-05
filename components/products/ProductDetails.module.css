@@ -1,0 +1,27 @@
+.container {
+  padding: 2rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.trigger {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  margin-right: 0.5rem;
+  border-bottom: 1px solid black;
+}
+
+.icon {
+  font-size: 3rem;
+  text-align: center;
+  transition: transform 0.3s;
+}
+.iconActive {
+  transform: rotate(180deg);
+}
+.comboContainer {
+  position: relative;
+  width: 200px;
+}
