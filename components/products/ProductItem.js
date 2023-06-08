@@ -10,9 +10,7 @@ const ProductItem = (props) => {
   return (
     <li className={classes.container} onClick={showDetailsHandler}>
       <Card>
-        <div className={classes.image}>
-          <Image src={props.image} alt="product" width={400} height={400} />
-        </div>
+        <Image src={props.image} alt="product" width={400} height={400} />
 
         <div className={classes.content}>
           <h4>{props.title}</h4>

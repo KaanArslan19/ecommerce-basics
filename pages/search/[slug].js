@@ -9,18 +9,37 @@ const SearchPage = ({ products }) => {
     </Fragment>
   );
 };
+const findProduct = (input, data) => {
+  input = input.toLowerCase();
+  data = data.toLowerCase();
+  let matched = 0;
+  let mismatched = 0;
+
+  for (let i = 0; i < input.length; i++) {
+    if (input[i] === data[i]) {
+      matched++;
+    } else {
+      mismatched++;
+    }
+  }
+  if (matched > mismatched) {
+    return true;
+  } else {
+    return false;
+  }
+};
 
 export async function getStaticPaths() {
   const client = await connectToDatabase();
   const db = client.db();
   const productsList = db.collection("products");
-  const products = await productsList.find({}, { title: 1, type: 1 }).toArray();
+  const products = await productsList.find({}, { title: 1 }).toArray();
   client.close();
 
   return {
     fallback: "blocking",
     paths: products.map((product) => ({
-      params: { slug: product.type && product.title },
+      params: { slug: product.title && product.type },
     })),
   };
 }
@@ -33,8 +52,8 @@ export async function getStaticProps(context) {
   const products = await productList.find().toArray();
   const filteredProducts = products.filter((product) => {
     return (
-      product.title.includes(enteredInputValue) &&
-      product.type.includes(enteredInputValue)
+      findProduct(enteredInputValue, product.title) ||
+      findProduct(enteredInputValue, product.type)
     );
   });
   client.close();

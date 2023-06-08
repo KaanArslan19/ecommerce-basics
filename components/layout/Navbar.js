@@ -135,7 +135,7 @@ const Navbar = () => {
           </li>
           <li>
             <Link
-              href="collections/products"
+              href="/collections/products"
               className={classes.nav__link_item_button}
             >
               Products
